@@ -1,0 +1,161 @@
+{% extends "pos/base.html" %}
+
+<!-- Page title  -->
+{% block title %}Add product{% endblock title %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+<!-- Page Heading -->
+{% block heading %}Add product{% endblock heading %}
+
+<!-- Page content  -->
+{% block content %}
+<!--Go back-->
+<div class="row ml-0 mb-3" style="width:100%;text-align:left;border-collapse:collapse;background-color:rgb(16, 16, 14);">
+    <a href="{% url 'products:products_list' %}">
+        <button type="button" class="btn btn-info font-weight-bold">
+            <i class="fas fa-long-arrow-alt-left mr-2"></i>
+            Go back
+        </button>
+    </a>
+</div>
+
+<div class="row" style="width:100%;text-align:left;border-collapse:collapse;background-color:rgb(16, 16, 14)">
+    <div class="card col-md-8" style="width:100%;text-align:left;border-collapse:collapse;background-color:rgb(16, 16, 14)">
+        <div class="card-body" >
+            <form action="{% url 'products:products_add' %}"  method="post">
+                {% csrf_token %}
+                <div class="form-row" style="width:100%;text-align:left;border-collapse:collapse;background-color:rgb(16, 16, 14);">
+
+                    <div class="form-group col-md-8">
+                        <label for="inputDescription">Name</label>
+                        <input type="text" class="form-control" name="name" placeholder="Product Name " required>
+                    </div>
+
+
+
+
+
+                    <div class="form-group col-md-8">
+                        <label for="inputDescription">Color</label>
+                        <input type="text" class="form-control" name="color" placeholder="RED or Black" required>
+                    </div>
+
+
+                    <div class="form-group col-md-8">
+                        <label for="inputDescription">Size</label>
+                        <input type="text" class="form-control" name="size" placeholder="4.5 cm" required>
+                    </div>
+
+
+                    <div class="form-group col-md-8">
+                        <label for="inputDescription">Room Name</label>
+                        <input type="text" class="form-control" name="room" placeholder="Room 1, Warehouse 1" required>
+                    </div>
+
+
+                    <div class="form-group col-md-8">
+                        <label for="inputDescription">Rack Direction</label>
+                        <input type="text" class="form-control" name="walldirection" placeholder="East or E," required>
+                    </div>
+
+
+                    <div class="form-group col-md-8">Column</label>
+                        <input type="text" class="form-control" name="column" placeholder="1" required>
+                    </div>
+
+
+                    <div class="form-group col-md-8">Row</label>
+                        <input type="text" class="form-control" name="row" placeholder="1" required>
+                    </div>
+
+
+
+                    <div class="form-group col-md-8">Validity</label>
+                        <input type="text" class="form-control" name="validity" placeholder="6 Month or 1 Year" required>
+                    </div>
+
+                   
+
+                    <div class="form-group col-md-8">Current Stock</label>
+                        <input type="text" class="form-control" name="currentstock" placeholder="30" required>
+                    </div>
+
+                    <div class="form-group col-md-8">Minimum Stock</label>
+                        <input type="text" class="form-control" name="stockreminder" placeholder="10" required>
+                    </div>
+
+                    <div class="form-group col-md-8">Grade</label>
+                        <input type="text" class="form-control" name="grade" placeholder="A,B,C or Top, Normal" required>
+                    </div>
+
+                    <div class="form-group col-md-8">Origin</label>
+                        <input type="text" class="form-control" name="origin" placeholder="Bangalore,India" required>
+                    </div>
+
+                    <div class="form-group col-md-8">weight</label>
+                        <input type="text" class="form-control" name="weight" placeholder="250 gram" required>
+                    </div>
+
+
+
+
+
+
+
+                    <div class="form-group col-md-4">
+                        <label for="state">State</label>
+                        <select name="state" class="form-control" required>
+                            {% for status in product_status %}
+                            <option value="{{status.0}}">{{status.1}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        <label for="inputDescription">Description</label>
+                        <input type="text" name="description" class="form-control" placeholder="Freshness Guaranteed Chicken Breast, 2.25 - 3.2 lb..." required>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="category">Category</label>
+                        <select name="category" class="form-control" required>
+                            <option value="" selected disabled hidden>Select the category</option>
+                            {% for category in categories %}
+                            <option value="{{category.id}}">{{category.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        <label for="inputPrice">Stock</label>
+                        <input type="number" name="stock" step="any"  class="form-control" placeholder="10" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-8">
+                        <label for="inputPrice">Price</label>
+                        <input type="number" name="price" step="any"  class="form-control" placeholder="10.99" required>
+                    </div>
+                </div>
+                
+
+                <button type="submit" class="btn btn-success font-weight-bold">Create product</button>
+               
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
